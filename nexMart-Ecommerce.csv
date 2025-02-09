@@ -1,0 +1,9 @@
+ testCaseId,testCaseDescription,testSteps,expectedResult,actualResult,status,severity
+TC001,Validate Homepage Hero Section,Navigate to homepage > Verify hero section content and image,Digital Timepiece banner should be displayed with correct text and VR headset image,Hero section displays correctly with all elements,Passed,High
+TC002,Test Product Search Functionality,Enter product name in search bar > Click search button,Search should return relevant products,Search functionality working as expected,Passed,High
+TC003,Verify Product Card Display,"Check product cards for iPhone and Watch > Verify pricing and ""Shop now"" buttons","Products should display with correct images, prices (PKR 798.00, PKR 70.00), and clickable buttons",Product cards showing correct information,Passed,Medium
+TC004,Test Navigation Menu,"Check all navigation items (Home, Shop, Cart, Sign in)",All navigation links should be clickable and lead to correct pages,Navigation working properly,Passed,High
+TC005,Validate Shopping Cart,Click on Cart icon > Verify cart functionality,Cart should open and show correct items if added,Cart functionality working as expected,Passed,High
+TC006,Test Profile Section,Click on Profile button > Check profile options,Profile section should be accessible and show user options,Profile section accessible,Passed,Medium
+TC007,Verify Contact Button,Locate and click Contact button,Contact button should be visible and functional,Contact button working,Passed,Low
+TC008,Test Responsive Design,Check website on different screen sizes,Layout should adjust properly on all devices,Responsive design working,Passed,High
