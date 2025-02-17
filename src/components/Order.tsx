@@ -23,6 +23,7 @@ import Table, {
 } from "./ui";
 import { MdClose } from "react-icons/md";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 interface Order {
   id: string;
@@ -161,10 +162,12 @@ const Orders = () => {
                                   (product: ProductData) => (
                                     <TableRow key={product._id}>
                                       <TableCell className="w-20">
-                                        <img
+                                        <Image
                                           src={urlFor(product?.image)?.url()}
                                           alt={product.title}
-                                          className="w-16 h-16 object-cover rounded-md"
+                                          className="object-cover rounded-md line-clamp-1"
+                                          height={64}
+                                          width={64}
                                         />
                                       </TableCell>
                                       <TableCell>{product.title}</TableCell>

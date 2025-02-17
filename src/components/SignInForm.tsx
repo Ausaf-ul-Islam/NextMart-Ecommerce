@@ -2,8 +2,6 @@ import { signIn } from "@/auth";
 import googleImage from "@/assets/googleImage.png";
 import githubImage from "@/assets/githubImage.png";
 import facebookImage from "@/assets/facebookImage.png";
-import microsoftImage from "@/assets/microsoftImage.png";
-import appleImage from "@/assets/appleImage.png";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/manageSession";

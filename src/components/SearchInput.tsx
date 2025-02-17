@@ -20,9 +20,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ items }) => {
   );
   const router = useRouter();
 
-  const debounce = (func: (...args: any[]) => void, delay: number) => {
+  const debounce = (func: (...args: string[]) => void, delay: number) => {
     let timeoutId: NodeJS.Timeout;
-    return (...args: any[]) => {
+    return (...args: string[]) => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => func(...args), delay);
     };
