@@ -1,129 +1,63 @@
-"use client";
-
-import { useState } from "react";
-import { LuAsterisk } from "react-icons/lu";
-import toast from "react-hot-toast";
-import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { auth } from "@/firebase";
+import { signIn } from "@/auth";
+import googleImage from "@/assets/googleImage.png";
+import githubImage from "@/assets/githubImage.png";
+import facebookImage from "@/assets/facebookImage.png";
+import microsoftImage from "@/assets/microsoftImage.png";
+import appleImage from "@/assets/appleImage.png";
+import Image from "next/image";
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/manageSession";
 import Headings from "./Headings";
-import Link from "next/link"; // Link import
 
-export const SignInForm = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const SignInForm = async () => {
+  const session = await getSession();
 
-    const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            // Sign in with Firebase
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
+  // Redirect if user is already signed in
+  if (session?.user) {
+    redirect("/profile");
+  }
 
-            // Check if email is verified
-            if (user.emailVerified) {
-                toast.success("Sign-in successful!");
-                // Redirect to home page after successful login
-                window.location.href = "/"; // Or use react-router for navigation
-            } else {
-                toast.error("Email not verified. Please check your inbox.");
-                await sendEmailVerification(user); // Resend email verification
-                toast.success("Verification email sent!");
-            }
-        } catch (error: unknown) {
-            // Handle errors more safely
-            if (error instanceof Error) {
-                toast.error(error.message || "Failed to sign in. Please try again.");
-            } else {
-                toast.error("An unknown error occurred. Please try again.");
-            }
-        }
-    };
+  // OAuth Providers
+  const providers = [
+    { id: "google", name: "Google", image: googleImage },
+    { id: "github", name: "GitHub", image: githubImage },
+    { id: "facebook", name: "Facebook", image: facebookImage },
+  ];
 
-    return (
-        <div className="w-full max-w-md mx-auto p-8 rounded-lg shadow-md">
-            <Headings title={"Sign"} subtitle={"In"} />
-            <form onSubmit={handleSignIn} className="space-y-6">
-                <div>
-                    <Label htmlFor="email">
-                        Username or email address <LuAsterisk className="inline text-lightRed text-xs" />
-                    </Label>
-                    <Input
-                        id="email"
-                        type="email"
-                        placeholder="john@youremail.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <Label htmlFor="password">
-                        Password <LuAsterisk className="inline text-lightRed text-xs" />
-                    </Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        placeholder="ex:#123456$"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <Button type="submit">Sign in</Button>
-            </form>
+  return (
+    <div className="w-full max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+      <Headings title="Welcome to " subtitle="NexMart" />
 
-            {/* Register Now link */}
-            <div className="text-center mt-4">
-                <p className="text-sm">
-                    Don&#39;t have an account?{" "}
-                    <Link href="/signin" className="text-lightOrange hover:text-darkOrange">
-                        Register Now
-                    </Link>
-                </p>
-            </div>
-        </div>
-    );
+      <p className="text-gray-500 text-center mt-1">
+        Sign in to continue shopping with exclusive deals!
+      </p>
+
+      <div className="flex flex-col gap-4 mt-6">
+        {providers.map((provider) => (
+          <form
+            key={provider.id}
+            action={async () => {
+              "use server";
+              await signIn(provider.id, { redirectTo: "/" });
+            }}
+            className="flex items-center justify-center gap-3 border border-gray-300 font-semibold bg-white px-5 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300"
+          >
+            <Image src={provider.image} alt={`${provider.name} Logo`} className="w-6 h-6" />
+            <button type="submit" className="text-gray-700">
+              Continue with {provider.name}
+            </button>
+          </form>
+        ))}
+      </div>
+
+      <p className="text-sm text-gray-500 text-center mt-6">
+        By signing in, you agree to our{" "}
+        <span className="text-orange-500 cursor-pointer hover:underline">
+          Terms & Privacy Policy
+        </span>.
+      </p>
+    </div>
+  );
 };
-
-const Label = ({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) => (
-    <label htmlFor={htmlFor} className="block text-sm font-medium text-lightText mb-2">
-        {children}
-    </label>
-);
-
-const Input = ({
-    id,
-    type,
-    placeholder,
-    value,
-    onChange,
-    required,
-}: {
-    id: string;
-    type: string;
-    placeholder: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    required?: boolean;
-}) => (
-    <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        required={required}
-        className="w-full px-3 py-2 border border-lightText rounded-md shadow-sm placeholder-lightText focus:outline-none focus:ring-2 focus:ring-lightOrange focus:border-lightOrange"
-    />
-);
-
-const Button = ({ children, type = "button" }: { children: React.ReactNode; type?: "submit" | "button" }) => (
-    <button
-        type={type}
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-accentWhite bg-lightOrange hover:bg-darkOrange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightRed transition-colors duration-200"
-    >
-        {children}
-    </button>
-);
 
 export default SignInForm;

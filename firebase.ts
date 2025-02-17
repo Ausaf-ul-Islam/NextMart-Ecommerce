@@ -2,6 +2,7 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDuLOXsaF5aVfXTDLIHk_L76IYawmdXxis",
   authDomain: "nexmart-cd0bb.firebaseapp.com",

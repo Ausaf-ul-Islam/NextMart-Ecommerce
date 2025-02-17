@@ -5,7 +5,7 @@ import Logo from "./Logo";
 const StudioHeader = (props) => {
   return (
     <div>
-      <div className="p-5 bg-black text-gray-100 flex items-center justify-between">
+      <div className="p-5 bg-gray-800 text-gray-100 flex items-center justify-between">
         <Link
           href={"/"}
           className="flex items-center gap-3 font-semibold hover:text-blue-600 duration-200"
@@ -15,7 +15,7 @@ const StudioHeader = (props) => {
 
         <Logo />
         <p className="hidden md:inline-flex text-sm">
-          Admin Studio for SHOPPERS Online Shopping
+          Admin Studio for NexMart Online Shopping
         </p>
       </div>
       {props.renderDefault(props)}

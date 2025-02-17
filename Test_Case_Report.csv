@@ -1,9 +1,0 @@
- testCaseId,testCaseDescription,testSteps,expectedResult,actualResult,status,severity,remarks
-TC001,Validate Car Listing Display,Navigate to car listing page > Verify all car details are displayed,"All cars should be displayed with correct details (name, price, fuel capacity, transmission, seating)",Cars displayed with complete information,Passed,High,All 16 cars shown correctly
-TC002,Test Car Filtering by Type,"Apply filter for car type (Sport, Sedan, SUV, etc.)",Cars filtered according to selected type,Filtering works as expected,Passed,Medium,Filters working properly
-TC003,Verify Car Image Loading,Check all car images > Verify image URLs,All car images should load properly,Images loading correctly,Passed,Medium,All image URLs valid
-TC004,Test Price Display Format,Check price format for all cars,Prices should be displayed in correct format ($XX.XX/day),Price format consistent,Passed,High,Price formatting consistent
-TC005,Validate Car Details Page,Click on individual car > Check detailed information,Complete car specifications should be displayed,All specifications visible,Passed,High,Details page working
-TC006,Test Popular Cars Section,Check cars tagged as 'popular',Popular cars should be properly tagged and filtered,Popular tag working,Passed,Low,Tag filtering works
-TC007,Verify Recommended Cars,Check cars tagged as 'recommended',Recommended cars should be properly tagged and filtered,Recommended tag working,Passed,Low,Tag filtering works
-TC008,Test Responsive Design,Check website on different screen sizes,Layout should adjust properly on all devices,Responsive design working,Passed,High,Mobile-friendly
