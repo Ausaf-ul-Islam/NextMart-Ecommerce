@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "NexMart",
     images: [
       {
-        url: "../../..//nexMart-1.png",
+        url: "/nexMart-1.png", // Fixed image path
         width: 1200,
         height: 630,
         alt: "NexMart - Your Trusted Online Store",
@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "NexMart E-commerce",
+    card: "summary_large_image", // Fixed issue here
     title: "NexMart - Best Online Shopping Experience",
     description: "Shop from NexMart, a Next.js-powered e-commerce store with an easy and secure checkout experience.",
-    images: ["/../../..//nexMart-1.png"], 
+    images: ["/nexMart-1.png"], // Fixed image path
     creator: "@ausafulislam", 
   },
 };
@@ -58,25 +58,25 @@ export default function RootLayout({
         <meta name="author" content="Ausaf ul Islam" />
 
         {/* Favicon */}
-        <link rel="icon" href="../../..//nexMart-1.png" type="image/x-icon" />
+        <link rel="icon" href="/nexMart-1.png" type="image/x-icon" />
 
         {/* Open Graph (for social media previews) */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="NexMart - Best Online Shopping Experience" />
-        <meta property="og:description" content="Shop from NexMart, a Next.js-powered e-commerce store with an easy and secure checkout experience.Built by Ausaf ul Islam." />
-        <meta property="og:image" content="../../..//nexMart-1.png" />
+        <meta property="og:description" content="Shop from NexMart, a Next.js-powered e-commerce store with an easy and secure checkout experience. Built by Ausaf ul Islam." />
+        <meta property="og:image" content="/nexMart-1.png" />
         <meta property="og:url" content="https://nexmart-ausaf.vercel.app/" />
         <meta property="og:site_name" content="NexMart" />
 
         {/* Twitter Card */}
-        <meta name="twitter:card" content="NexMart E-commerce" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="NexMart - Best Online Shopping Experience" />
         <meta name="twitter:description" content="Shop from NexMart, a Next.js-powered e-commerce store with an easy and secure checkout experience." />
-        <meta name="twitter:image" content="../../..//nexMart-1.png" />
+        <meta name="twitter:image" content="/nexMart-1.png" />
         <meta name="twitter:creator" content="@ausafulislam" />
+
         {/* Google Search Console verification for SEO */}
         <meta name="google-site-verification" content="NaUf690lfIuTZBJkyF-I68rIiX-t0HiZe5xWgUQwNm0" />
-
       </head>
       <body className={poppins.className}>
         <Layout>
